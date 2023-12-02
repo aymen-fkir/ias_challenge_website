@@ -1,53 +1,88 @@
-/*general*/
-article, aside, figure, footer, header, main, menu, nav, section {
-	display: block;
-	box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
-body, h1, h2, p, ul, ol, li, dd, dl {
-	margin: 0; padding: 0;
+
+body {
+  padding: 24px;
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+  background-color: #ecf0f3;
 }
-/*table styling*/
-header {
-	padding: 50px 20px;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
-h1, main {
-	text-align: center;
+
+.container {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
-table {
-	border-collapse: collapse;
-	display: inline-block;
-	text-align: left;
-	border-top: 1px solid #888;
+
+.table {
+  width: 100%;
+  border: 1px solid #eeeeee;
 }
-table thead {
-	background: #bbb;
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: #000;
+  padding: 18px 0;
 }
-table tr:nth-child(even) {
-	background: #dfdfdf;
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: 18px 0;
 }
-table th, table td {
-	padding: 10px 20px;
-	border: 1px solid #888;
-	border-width: 0 1px 1px;
+.table-row:nth-of-type(odd) {
+    color: #090909;
+    background-color: #f9f9f9;
 }
-/*responsive table*/
-@media screen and (max-width: 1000px) {
-	/*put each field on its own line and align text to the right
-	 *border is added for further readability
-	 */
-	table td {
-		display: block;
-		text-align: right;
-	}
-	/*put data-label content before each field floated to the left*/
-	table td:before {
-		content: attr(data-label);
-		float: left;
-		font-weight: bold;
-		margin-right: 10px;
-	}
-	/*remove thead*/
-	table thead {
-		display: none;
-	}
+
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+}
+
+.header__item {
+  text-transform: uppercase;
+}
+
+.filter__link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.filter__link::after {
+  content: "";
+  position: absolute;
+  right: -18px;
+  color: white;
+  font-size: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.filter__link.desc::after {
+  content: "(desc)";
+}
+.filter__link.asc::after {
+  content: "(asc)";
 }

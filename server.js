@@ -1,12 +1,15 @@
 const path = require("path")
 const express = require('express');
 const app = express();
-const port = 3000;
+const fs = require("fs").promises;
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+
+
 const { connect } = require("http2");
 const html_file = path.join(__dirname,"public","login")
 const Login_file = path.join(__dirname,"public","login","index.html")
+const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public","login")));
@@ -14,13 +17,15 @@ app.use(express.static(path.join(__dirname, "public",)));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-function create_connection() {
-    return mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'aymen147',
-        database: 'my_db'
-    });
+
+async function create_connection() {
+    try {
+        const secret = await fs.readFile(path.join(__dirname, "connection.json"), 'utf8');
+        return mysql.createConnection(JSON.parse(secret));
+    } catch (error) {
+        console.error('Error reading connection file:', error.message);
+        throw error;
+    }
 }
 
 function close_connection(connection) {
@@ -57,21 +62,22 @@ function insert_into_db(data) {
 
   
 
-function select_from_db(Query,callback){
-    const connection = create_connection();
-    connection.query(Query, (selectErr,results) =>{
-        close_connection(connection);
-        if (selectErr){
-            callback(selectErr, null);
-        } else {
-            callback(null, results)
-            return results;
-            
-        }
-        
-        
+function select_from_db(Query, callback) {
+    create_connection().then((connection) => {
+        connection.query(Query, (selectErr, results) => {
+            close_connection(connection);
+            if (selectErr) {
+                callback(selectErr, null);
+            } else {
+                callback(null, results);
+            }
+        });
+    }).catch((error) => {
+        // Handle errors during connection creation
+        console.error('Error creating connection:', error.message);
     });
 }
+
 
 app.get('/', (req, res) => {
     res.render(Login_file);
