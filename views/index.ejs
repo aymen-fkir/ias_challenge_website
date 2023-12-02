@@ -1,0 +1,48 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title>Responsive Table Template</title>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<header>
+		<h1>Responsive Table Test</h1>
+	</header>
+	<main>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Robot ID</th>
+					<th>robot state</th>
+					<th>air condtion</th>
+					<th>energy consumtion</th>
+					<th>weither state</th>
+					<th>condition</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<% Data.forEach((item, index) => { %>
+					<tr>
+						<td data-label="ID:"><%= item.id %></td>
+						<td data-label="Robot ID"><%= item.robot_id %></td>
+						<td data-label="robot state"><%= item.robot_state %></td>
+						<td data-label="air condtion"><%= item.air_condition %></td>
+						<td data-label="energy consumtion"><%= item.energy_consumption %></td>
+						<td data-label="weither state"><%= item.weather_state %></td>
+						<td data-label="robot condition"><%= item.robot_condition %></td>
+					</tr>
+					<% }); %>
+				</tr>
+			</tbody>
+		</table>
+	</main>
+</body>
+</html>
