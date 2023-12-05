@@ -4,6 +4,11 @@
 *:after {
   box-sizing: border-box;
 }
+  
+.container_mother {
+  display: flex;
+  justify-content: space-between
+}
 
 body {
   padding: 24px;

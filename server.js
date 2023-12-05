@@ -96,7 +96,14 @@ app.post('/submit',(req,res)=>{
                         res.status(500).send("Internal server Error")
                     }
                     else{
-                        res.render("index",{Data})
+                        select_from_db("select * from weather_data where project_id = '" + data[0].project_id + "'",(ERR,DATA)=>{
+                            if (ERR){
+                                res.status(500).send("Internal server Error")
+                            }
+                            else{
+                                res.render("index",{Data,DATA})
+                            }
+                        })
                     }
                 })
                     

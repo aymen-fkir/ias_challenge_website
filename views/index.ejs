@@ -7,28 +7,44 @@
 	<title>Document</title>
 </head>
 <body>
-	<div class="container">
-		<div class="table">
-			<div class="table-header">
-				<div class="header__item"><a id="ID" class="filter__link" href="#">ID</a></div>
-				<div class="header__item"><a id="robot_id" class="filter__link filter__link--number">robot id</a></div>
-				<div class="header__item"><a id="robot_condition" class="filter__link filter__link--number">robot state</a></div>
-				<div class="header__item"><a id="air_condition" class="filter__link filter__link--number">air condition</a></div>
-				<div class="header__item"><a id="energy_consumption" class="filter__link filter__link--number">energy consumption</a></div>
-				<div class="header__item"><a id="weather_state" class="filter__link filter__link--number">Weather state</a></div>
-				<div class="header__item"><a id="robot_condition" class="filter__link filter__link--number">robot condition</a></div>
+	<div class="container_mother">
+		<div class="container">
+			<div class="table">
+				<div class="table-header">
+					<div class="header__item"><a id="energy_consumption" class="filter__link filter__link--number">Weather State</a></div>
+					<div class="header__item"><a id="robot_condition" class="filter__link filter__link--number">air condition</a></div>
+				</div>
+				<div class="table-content">
+					<div class="table-row">
+						<% DATA.forEach((item, index) => { %>
+							<div class="table-data"><%= item.weather_condition%></div>
+							<div class="table-data"><%= item.air_condition %></div>
+						<% }); %>
+					</div>
+				</div>
 			</div>
-			<div class="table-content">
-				<div class="table-row">
-					<% Data.forEach((item, index) => { %>
-						<div class="table-data"><%= item.id%></div>
-						<div class="table-data"><%= item.robot_id%></div>
-						<div class="table-data"><%= item.robot_state%></div>
-						<div class="table-data"><%= item.air_condition%></div>
-						<div class="table-data"><%= item.energy_consumption %></div>
-						<div class="table-data"><%= item.weather_state %></div>
-						<div class="table-data"><%= item.robot_condition %></div>
-					<% }); %>
+		</div>
+
+
+
+
+		<div class="container">
+			<div class="table">
+				<div class="table-header">
+					<div class="header__item"><a id="robot_id" class="filter__link filter__link--number">robot id</a></div>
+					<div class="header__item"><a id="robot_condition" class="filter__link filter__link--number">robot state</a></div>
+					<div class="header__item"><a id="energy_consumption" class="filter__link filter__link--number">energy consumption</a></div>
+					<div class="header__item"><a id="robot_condition" class="filter__link filter__link--number">robot condition</a></div>
+				</div>
+				<div class="table-content">
+					<div class="table-row">
+						<% Data.forEach((item, index) => { %>
+							<div class="table-data"><%= item.robot_id%></div>
+							<div class="table-data"><%= item.robot_state%></div>
+							<div class="table-data"><%= item.energy_consumption %></div>
+							<div class="table-data"><%= item.robot_condition %></div>
+						<% }); %>
+					</div>
 				</div>
 			</div>
 		</div>
