@@ -91,7 +91,7 @@ app.post('/submit',(req,res)=>{
         else{
                 
             if (data[0].email == req.body.email && data[0].password == req.body.password) {
-                select_from_db("select * from robot_data where id = '" + data[0].id + "'",(Err,Data)=>{
+                select_from_db("select * from robot_data where project_id = '" + data[0].project_id + "'",(Err,Data)=>{
                     if (Err){
                         res.status(500).send("Internal server Error")
                     }
