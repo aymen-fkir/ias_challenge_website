@@ -37,7 +37,7 @@ To run this project locally, make sure to install all the required packages usin
 Visit http://localhost:your-port in your web browser.
 
 ## NOTE 
-Due to resource constraints, real-time data may not be available.
+Due to resource constraints, real-time data may is not available.
 
 
 
